@@ -2137,6 +2137,122 @@ body.modal-open {
   }
 }
 
+@media (max-width: 767px) {
+  .hero {
+    gap: 28px;
+    padding-top: 38px;
+    padding-bottom: 46px;
+  }
+
+  .hero-visual,
+  .tiramisu-animation,
+  .verrine-stage,
+  .tiramisu-3d-scene {
+    min-height: 0;
+  }
+
+  .hero-visual {
+    animation: none;
+  }
+
+  .tiramisu-3d-scene {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: visible;
+    padding: 22px 14px 18px;
+  }
+
+  .tiramisu-3d-object {
+    order: 1;
+  }
+
+  .tiramisu-3d-float {
+    width: min(290px, 82vw);
+    height: 358px;
+  }
+
+  .scene-light {
+    top: 22px;
+    left: 50%;
+    width: min(310px, 78vw);
+    transform: translateX(-50%);
+  }
+
+  .scene-shadow {
+    top: 342px;
+    bottom: auto;
+    width: min(250px, 62vw);
+  }
+
+  .hero-part-labels {
+    position: static;
+    z-index: 8;
+    order: 2;
+    display: grid;
+    gap: 10px;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    pointer-events: auto;
+  }
+
+  .part-label,
+  .part-cacao,
+  .part-biscuit,
+  .part-base,
+  .part-cream-one,
+  .part-cream-two {
+    position: static;
+    width: 100%;
+    padding: 11px 13px;
+    text-align: left;
+  }
+
+  .part-label span {
+    display: none;
+  }
+
+  .part-label strong {
+    font-size: 19px;
+  }
+
+  .part-label p {
+    font-size: 12px;
+  }
+
+  .verrine-hint {
+    position: static;
+    order: 3;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    padding: 8px 12px;
+    font-size: 12px;
+    line-height: 1.35;
+    text-align: center;
+    transform: none;
+  }
+
+  .layer-info-panel {
+    position: static;
+    order: 4;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    padding: 15px;
+    transform: none;
+  }
+
+  .layer-info-panel h3 {
+    font-size: 23px;
+  }
+
+  .hero-badge {
+    display: none;
+  }
+}
+
 @media (max-width: 560px) {
   .site-header {
     padding: 14px 16px;
@@ -2185,52 +2301,26 @@ body.modal-open {
     padding: 12px;
   }
 
-  .hero-badge {
-    right: 12px;
-    bottom: 12px;
-  }
-
   .hero-visual,
   .tiramisu-animation,
   .verrine-stage,
   .tiramisu-3d-scene {
-    min-height: 620px;
+    min-height: 0;
   }
 
   .verrine-float,
   .tiramisu-3d-float {
-    width: min(285px, 82vw);
-    height: 370px;
+    width: min(280px, 84vw);
+    height: 350px;
   }
 
   .verrine-shadow,
   .scene-shadow {
-    bottom: 84px;
     width: 70%;
   }
 
-  .verrine-hint {
-    bottom: 22px;
-    width: max-content;
-    max-width: 82%;
-    text-align: center;
-  }
-
-  .layer-info-panel {
-    top: auto;
-    right: auto;
-    bottom: 72px;
-    left: 50%;
-    width: min(300px, 86%);
-    transform: translateX(-50%);
-  }
-
   .hero-part-labels {
-    position: static;
-    display: grid;
-    gap: 10px;
-    width: min(320px, 86%);
-    margin: -58px auto 70px;
+    max-width: 100%;
   }
 
   .part-label,
