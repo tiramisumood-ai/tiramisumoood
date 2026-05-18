@@ -12,8 +12,6 @@ const ingredientsTitle = document.querySelector("#ingredients-title");
 const ingredientsList = document.querySelector(".ingredients-list");
 const ingredientsButtons = document.querySelectorAll(".ingredients-button");
 const ingredientsCloseItems = document.querySelectorAll("[data-ingredients-close]");
-const verrineStage = document.querySelector("[data-verrine-stage]");
-const verrineObject = document.querySelector("[data-verrine-object]");
 const tiramisuLayerButtons = document.querySelectorAll(".tiramisu-layer[data-layer-title]");
 const layerInfoPanel = document.querySelector(".layer-info-panel");
 const layerInfoTitle = document.querySelector(".layer-info-title");
@@ -132,82 +130,17 @@ navLinks.forEach((link) => {
   link.addEventListener("click", () => header.classList.remove("is-open"));
 });
 
-if (verrineStage && verrineObject) {
-  let isRotatingVerrine = false;
-  let dragStartX = 0;
-  let dragStartY = 0;
-  let startRotateX = -4;
-  let startRotateY = 0;
-  let rotateX = -4;
-  let rotateY = 0;
-  let movedDuringDrag = false;
-  let lastInteractionTime = Date.now();
-
-  const applyVerrineRotation = () => {
-    verrineObject.style.setProperty("--rotate-x", `${rotateX}deg`);
-    verrineObject.style.setProperty("--rotate-y", `${rotateY}deg`);
-  };
-
-  const resetVerrine = () => {
-    isRotatingVerrine = false;
-    verrineStage.classList.remove("is-dragging");
-    lastInteractionTime = Date.now();
-  };
-
-  verrineStage.addEventListener("pointerdown", (event) => {
-    isRotatingVerrine = true;
-    movedDuringDrag = false;
-    dragStartX = event.clientX;
-    dragStartY = event.clientY;
-    startRotateX = rotateX;
-    startRotateY = rotateY;
-    lastInteractionTime = Date.now();
-    verrineStage.classList.add("is-dragging");
-    verrineStage.setPointerCapture(event.pointerId);
+tiramisuLayerButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    layerInfoTitle.textContent = button.dataset.layerTitle;
+    layerInfoDescription.textContent = button.dataset.layerDescription;
+    layerInfoPanel.hidden = false;
   });
+});
 
-  verrineStage.addEventListener("pointermove", (event) => {
-    if (!isRotatingVerrine) return;
-    const deltaX = event.clientX - dragStartX;
-    const deltaY = event.clientY - dragStartY;
-    movedDuringDrag = movedDuringDrag || Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4;
-    rotateY = startRotateY + deltaX * 0.75;
-    rotateX = Math.max(-18, Math.min(16, startRotateX - deltaY * 0.18));
-    applyVerrineRotation();
-  });
-
-  verrineStage.addEventListener("pointerup", resetVerrine);
-  verrineStage.addEventListener("pointercancel", resetVerrine);
-  verrineStage.addEventListener("lostpointercapture", resetVerrine);
-
-  tiramisuLayerButtons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      if (movedDuringDrag) {
-        event.preventDefault();
-        return;
-      }
-      layerInfoTitle.textContent = button.dataset.layerTitle;
-      layerInfoDescription.textContent = button.dataset.layerDescription;
-      layerInfoPanel.hidden = false;
-    });
-  });
-
-  layerInfoClose?.addEventListener("click", () => {
-    layerInfoPanel.hidden = true;
-  });
-
-  const animateVerrineIdle = () => {
-    if (!isRotatingVerrine && Date.now() - lastInteractionTime > 1200) {
-      rotateY += 0.08;
-      rotateX += (-4 - rotateX) * 0.025;
-      applyVerrineRotation();
-    }
-    requestAnimationFrame(animateVerrineIdle);
-  };
-
-  applyVerrineRotation();
-  requestAnimationFrame(animateVerrineIdle);
-}
+layerInfoClose?.addEventListener("click", () => {
+  layerInfoPanel.hidden = true;
+});
 
 const observer = new IntersectionObserver(
   (entries) => {

@@ -47,9 +47,9 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 20;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   gap: 22px;
   padding: 18px clamp(18px, 5vw, 70px);
   background: rgba(255, 249, 239, 0.88);
@@ -61,6 +61,7 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  justify-self: center;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 30px;
   font-weight: 700;
@@ -110,18 +111,36 @@ textarea {
 }
 
 .main-nav {
-  display: flex;
+  position: absolute;
+  top: 74px;
+  right: clamp(18px, 5vw, 70px);
+  display: grid;
   align-items: center;
-  gap: 22px;
-  margin-left: auto;
-  margin-right: clamp(12px, 3vw, 42px);
+  min-width: 230px;
+  gap: 0;
+  padding: 12px;
+  border: 1px solid rgba(75, 45, 31, 0.12);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
   color: var(--muted);
   font-size: 15px;
   font-weight: 600;
 }
 
 .main-nav a {
+  padding: 12px;
   transition: color 0.25s ease;
+}
+
+.site-header.is-open .main-nav {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .main-nav a:hover {
@@ -149,6 +168,7 @@ textarea {
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-self: start;
 }
 
 .header-tool {
@@ -195,7 +215,8 @@ textarea {
 }
 
 .menu-toggle {
-  display: none;
+  display: block;
+  justify-self: end;
   width: 42px;
   height: 42px;
   border: 1px solid rgba(75, 45, 31, 0.12);
@@ -1253,6 +1274,25 @@ h3 {
   animation-delay: -2.7s;
 }
 
+.tiramisu-2d-scene {
+  cursor: default;
+  perspective: none;
+  touch-action: auto;
+}
+
+.tiramisu-2d-scene.is-dragging {
+  cursor: default;
+}
+
+.tiramisu-2d-object {
+  transform: none;
+  transition: none;
+}
+
+.tiramisu-2d-scene .tiramisu-layer {
+  transform: translateX(-50%) !important;
+}
+
 .hero-badge {
   position: absolute;
   right: -14px;
@@ -2029,31 +2069,10 @@ body.modal-open {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .main-nav,
-  .header-cta {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
   .site-header.is-open .main-nav {
-    position: absolute;
     top: 74px;
     right: 18px;
     left: 18px;
-    display: grid;
-    gap: 0;
-    padding: 12px;
-    border: 1px solid rgba(75, 45, 31, 0.12);
-    border-radius: 8px;
-    background: var(--white);
-    box-shadow: var(--shadow);
-  }
-
-  .site-header.is-open .main-nav a {
-    padding: 12px;
   }
 }
 

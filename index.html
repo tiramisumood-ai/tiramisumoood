@@ -31,16 +31,17 @@
   </head>
   <body>
     <header class="site-header">
+      <div class="header-actions">
+        <button class="header-tool cart-toggle" type="button" data-cart-open>
+          Panier <span class="cart-count">0</span>
+        </button>
+        <button class="header-tool account-toggle" type="button" data-account-open>Mon compte</button>
+      </div>
+
       <a class="logo" href="#accueil" aria-label="Accueil TiraMood">
         <span class="logo-mark" aria-hidden="true"></span>
         <span class="logo-text">TiraMood</span>
       </a>
-
-      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
 
       <nav class="main-nav" aria-label="Navigation principale">
         <a href="#accueil">Accueil</a>
@@ -49,13 +50,11 @@
         <a href="#commander">Commander</a>
       </nav>
 
-      <div class="header-actions">
-        <button class="header-tool cart-toggle" type="button" data-cart-open>
-          Panier <span class="cart-count">0</span>
-        </button>
-        <button class="header-tool account-toggle" type="button" data-account-open>Mon compte</button>
-        <a class="header-cta" href="#commander">Commander maintenant</a>
-      </div>
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
 
     <main>
@@ -77,11 +76,11 @@
         </div>
 
         <div class="hero-visual" aria-label="Tiramisu 3D interactif dans une verrine transparente">
-          <div class="tiramisu-3d-scene" data-verrine-stage>
+          <div class="tiramisu-3d-scene tiramisu-2d-scene">
             <div class="scene-light"></div>
             <div class="scene-shadow"></div>
 
-            <div class="tiramisu-3d-object" data-verrine-object>
+            <div class="tiramisu-3d-object tiramisu-2d-object">
               <div class="tiramisu-3d-float">
                 <div class="cocoa-particles" aria-hidden="true">
                   <span></span>
@@ -173,7 +172,7 @@
               </article>
             </div>
 
-            <p class="verrine-hint">Faites tourner la verrine à 360°</p>
+            <p class="verrine-hint">Touchez une couche pour découvrir sa composition</p>
           </div>
           <div class="hero-badge">
             <strong>8</strong>
